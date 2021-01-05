@@ -1,0 +1,79 @@
+openapi: 3.0.3
+info:
+  title: Calculator Service
+  description: Service for adding numbers, a Goa teaser
+  version: "1.0"
+servers:
+- url: http://localhost:8000
+paths:
+  /:
+    get:
+      tags:
+      - status
+      summary: status status
+      operationId: status#status
+      responses:
+        "200":
+          description: OK response.
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Ex ut mollitia qui placeat quidem.
+              example: Fuga cupiditate illum aut vero veniam nihil.
+  /docs:
+    get:
+      tags:
+      - status
+      summary: Download ./gen/http/openapi.json
+      operationId: status#/docs
+      responses:
+        "200":
+          description: File downloaded
+  /v1/add/{a}/{b}:
+    get:
+      tags:
+      - calc
+      summary: v1Add calc
+      operationId: calc#v1Add
+      parameters:
+      - name: a
+        in: path
+        description: Left operand
+        required: true
+        schema:
+          type: integer
+          description: Left operand
+          example: 1137097264500522570
+          format: int64
+        example: 2037537983312091856
+      - name: b
+        in: path
+        description: Right operand
+        required: true
+        schema:
+          type: integer
+          description: Right operand
+          example: 1725739846200824757
+          format: int64
+        example: 2524499437111872914
+      responses:
+        "200":
+          description: OK response.
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 2658175660759112625
+                format: int64
+              example: 3934140362476364800
+  /v1/docs:
+    get:
+      tags:
+      - calc
+      summary: Download ./v1/gen/http/openapi.json
+      operationId: calc#/v1/docs
+      responses:
+        "200":
+          description: File downloaded
+components: {}

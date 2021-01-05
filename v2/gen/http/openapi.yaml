@@ -1,0 +1,79 @@
+swagger: "2.0"
+info:
+  title: Calculator Service
+  description: Service for adding numbers, a Goa teaser
+  version: ""
+host: localhost:8000
+consumes:
+- application/json
+- application/xml
+- application/gob
+produces:
+- application/json
+- application/xml
+- application/gob
+paths:
+  /:
+    get:
+      tags:
+      - status
+      summary: status status
+      operationId: status#status
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            type: string
+      schemes:
+      - http
+  /docs:
+    get:
+      tags:
+      - status
+      summary: Download ./gen/http/openapi.json
+      operationId: status#/docs
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+  /v2/add/{a}/{b}:
+    get:
+      tags:
+      - calc
+      summary: v2Add calc
+      operationId: calc#v2Add
+      parameters:
+      - name: a
+        in: path
+        description: Left operand
+        required: true
+        type: integer
+      - name: b
+        in: path
+        description: Right operand
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK response.
+          schema:
+            type: integer
+            format: int64
+      schemes:
+      - http
+  /v2/docs:
+    get:
+      tags:
+      - calc
+      summary: Download ./v2/gen/http/openapi.json
+      operationId: calc#/v2/docs
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
